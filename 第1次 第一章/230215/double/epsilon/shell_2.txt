@@ -1,0 +1,11 @@
+Python 3.7.4 (tags/v3.7.4:e09359112e, Jul  8 2019, 20:34:20) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> import math
+>>> pow(2,-53)
+1.1102230246251565e-16
+>>> 
+=================== RESTART: C:\Users\Lenovo\Desktop\1.py ===================
+1.00000000000000022204460492503131
+1
+1.1102230246251565e-16
+>>> 

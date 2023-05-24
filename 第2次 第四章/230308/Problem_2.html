@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>Problem_2</title>
+</head>
+<body>
+    <canvas id="canvas" width="2100" height="1200"></canvas>
+    <script>
+        function func(_x){
+            return 1/(1+_x*_x);
+        }
+
+        var canvas=document.getElementById("canvas");
+        var ctx=canvas.getContext("2d");
+        var base_point=[];
+        var base_diff=[];
+        
+        var x_tmp;
+        for(var i=0;i<=20;i++){
+            x_tmp=Math.cos((2*i+1)/42*Math.PI)*5;
+            base_point.push({
+                x:x_tmp,
+                y:func(x_tmp)
+            });
+            base_diff.push([]);
+        }
+
+        function calcul(_x){
+            var result=0,tmp_result;
+            for(var i=0;i<=20;i++){
+                tmp_result=base_point[i].y;
+                for(var j=0;j<=20;j++){
+                    if(j==i) continue;
+                    tmp_result*=(_x-base_point[j].x);
+                    tmp_result/=(base_point[i].x-base_point[j].x);
+                }
+                result+=tmp_result;
+            }
+            return result;
+        }
+
+        var pen_x,pen_y;
+        ctx.fillStyle="#000000";
+        ctx.font="30px courier";
+        ctx.beginPath();
+        ctx.moveTo(50,1150);
+        ctx.lineTo(2050,1150);
+        ctx.moveTo(1050,50);
+        ctx.lineTo(1050,1150);
+        ctx.closePath();
+        ctx.stroke();
+        for(var i=-5;i<=5;i++){
+            ctx.fillText(i,30+(i+5)*200,1145);
+        }
+        for(var i=0.25;i<=1;i+=0.25){
+            //if(i==0) continue;
+            ctx.fillText(i.toFixed(2),975,1155-i*1000);
+        }
+
+        ctx.lineWidth=5;
+        ctx.strokeStyle="#ff0000";
+        ctx.beginPath();
+        ctx.moveTo(50,1150-func(-5)*1000);
+        for(var i=-5;i<=5;i+=0.005){
+            ctx.lineTo((i+5)*200+50,1150-func(i)*1000);
+        }
+        ctx.stroke();
+
+        ctx.strokeStyle="#0000ff";
+        ctx.beginPath();
+        ctx.moveTo(50,1150-calcul(-5)*1000);
+        for(var i=-5;i<=5;i+=0.005){
+            ctx.lineTo((i+5)*200+50,1150-calcul(i)*1000);
+        }
+        ctx.stroke();
+    </script>
+</body>
+</html>

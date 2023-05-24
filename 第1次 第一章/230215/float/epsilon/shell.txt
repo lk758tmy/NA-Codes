@@ -1,0 +1,110 @@
+Python 3.7.4 (tags/v3.7.4:e09359112e, Jul  8 2019, 20:34:20) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> (（a-b)/2)/((a+b)/2)
+SyntaxError: invalid character in identifier
+>>> =(a-b)/(a+b)
+SyntaxError: invalid syntax
+>>> 1
+1
+>>> 2
+2
+>>> 3
+3
+>>> 1 2
+SyntaxError: invalid syntax
+>>> 1 2 3
+SyntaxError: invalid syntax
+>>> 1
+1
+>>> 2
+2
+>>> 3
+3
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+1 2
+
+Traceback (most recent call last):
+  File "C:/Users/Lenovo/Desktop/1.py", line 3, in <module>
+    c=(a-b)/(a+b);
+TypeError: unsupported operand type(s) for -: 'str' and 'str'
+>>> 1.1 1.2
+SyntaxError: invalid syntax
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+1.1 1.2
+
+Traceback (most recent call last):
+  File "C:/Users/Lenovo/Desktop/1.py", line 3, in <module>
+    c=(a-b)/(a+b);
+TypeError: unsupported operand type(s) for -: 'str' and 'str'
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+1.1
+1.2
+Traceback (most recent call last):
+  File "C:/Users/Lenovo/Desktop/1.py", line 3, in <module>
+    c=(a-b)/(a+b);
+TypeError: unsupported operand type(s) for -: 'str' and 'str'
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+1.2 1.1
+Traceback (most recent call last):
+  File "C:/Users/Lenovo/Desktop/1.py", line 1, in <module>
+    a=float(input());
+ValueError: could not convert string to float: '1.2 1.1'
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+1.2
+1.1
+0.04347826086956516
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+1.00000011920928955078125
+1
+5.960464122267716e-08
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+1
+0.999999940395355224609375
+2.980232327587376e-08
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+1.0000002384185791015625
+1.00000011920928955078125
+5.9604634117251494e-08
+>>> 0.999999940395355224609375
+0.9999999403953552
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+0.999999940395355224609375
+0.99999988079071044921875
+2.980232505223081e-08
+>>> 2^(-23)
+-21
+>>> import math
+>>> pow(2,-23)
+1.1920928955078125e-07
+>>> pow(2,-24)
+5.960464477539063e-08
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+10.00000095367431640625
+10
+4.768371354657585e-08
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+0.98500001430511474609375
+0.984999954700469970703125
+3.025616533663085e-08
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+1024.0001220703125
+1024
+5.960464122267716e-08
+>>> 
+=================== RESTART: C:/Users/Lenovo/Desktop/1.py ===================
+1024
+1023.99993896484375
+2.980232327587376e-08
+>>> 

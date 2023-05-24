@@ -1,0 +1,84 @@
+<html>
+<head>
+    <title>Problem_5</title>
+</head>
+<body>
+    <canvas id="canvas" width="2100" height="1300"></canvas>
+    <script>
+        function func(_x){
+            return 1/(1+_x*_x);
+        }
+        function func_d(_x){
+            var _tmp=_x*_x+1;
+            return 2*_x/_tmp/_tmp;
+        }
+
+        var canvas=document.getElementById("canvas");
+        var ctx=canvas.getContext("2d");
+        var base_point=[],base_diff=[];
+        var M=10;
+
+        for(var i=0;i<=M;i++){
+            base_point.push({
+                x:-5+i,
+                y:func(-5+i),
+                dy:func_d(-5+i)
+            });
+        }
+        for(var i=0;i<M;i++){
+            base_diff.push(base_point[i+1].x-base_point[i].x);
+        }
+
+
+        function calcul(_x,_id){
+            var _result=0,_tmp0=(base_point[_id].x-base_point[_id+1].x);
+            var _tmpa=-(_x-base_point[_id+1].x)/base_diff[_id];
+            var _tmpb=+(_x-base_point[_id].x)/base_diff[_id];
+            _result+=base_point[_id].y*(1+2*_tmpb)*_tmpa*_tmpa;
+            _result+=base_point[_id+1].y*(1+2*_tmpa)*_tmpb*_tmpb;
+            _result+=-base_point[_id].dy*_tmpb*_tmpa*_tmpa*base_diff[_id];
+            _result+=base_point[_id+1].dy*_tmpa*_tmpb*_tmpb*base_diff[_id]
+            return _result;
+        }
+
+        ctx.fillStyle="#000000";
+        ctx.font="30px courier";
+        ctx.beginPath();
+        ctx.moveTo(50,1050);
+        ctx.lineTo(2050,1050);
+        ctx.moveTo(1050,50);
+        ctx.lineTo(1050,1250);
+        //ctx.closePath();
+        ctx.stroke();
+        for(var i=-5;i<=5;i++){
+            ctx.fillText(i,30+(i+5)*200,1080);
+        }
+        for(var i=-0.5;i<=2.5;i+=0.5){
+            if(i==0) continue;
+            ctx.fillText(i.toFixed(1),1055,1255-(i+0.5)*400);
+        }
+
+        ctx.lineWidth=5;
+        ctx.strokeStyle="#ff0000";
+        ctx.beginPath();
+        ctx.moveTo(50,1250-(func(-5)+0.5)*400);
+        for(var i=-5;i<=5;i+=0.005){
+            ctx.lineTo((i+5)*200+50,1250-(func(i)+0.5)*400);
+        }
+        //ctx.closePath();
+        ctx.stroke();
+
+        ctx.strokeStyle="#0000ff";
+        ctx.beginPath();
+        ctx.moveTo(50,1250-(calcul(-5,0)+0.5)*400);
+        var id=0;
+        for(var i=-5;i<=5;i+=0.005){
+            if(i>=base_point[id+1].x){
+                id++;
+            }
+            ctx.lineTo((i+5)*200+50,1250-(calcul(i,id)+0.5)*400);
+        }
+        ctx.stroke();
+    </script>
+</body>
+</html>
