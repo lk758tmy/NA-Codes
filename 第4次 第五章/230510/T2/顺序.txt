@@ -1,1 +1,0 @@
-复合T&S -> 减半T&S -> Romberg -> 自适应T -> 复合G-Legendre -> G-Laguerre
