@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>Heun公式</title>
+</head>
+<body>
+    <canvas id="canvas" width="1100" height="550"></canvas>
+    <script>
+        function func(_t,_y){
+            if(Math.abs(_t-1)<1e-7) return -1.0;
+	        return -(_y+1.0/_t)/_t-_y*_y;
+        }
+        function solu(_x){
+            return -Math.tan(Math.log(_x)+Math.PI/4)/_x
+        }
+
+        var canvas=document.getElementById("canvas");
+        var ctx=canvas.getContext("2d");
+        var solution_appr=[],solution_real=[];
+        var N=1000;
+        
+        var h=1/N,t=1,y=-1,y_0,h4=h/4,h23=2*h/3,f;
+        solution_appr.push(-1); solution_real.push(-1); 
+        for(var i=1;i<=N;i++){
+            f=func(t,y); y_0=y+h23*f; y=y+h4*(f+3*func(t+h23,y_0));
+            t+=h; solution_appr.push(y); solution_real.push(solu(t));
+        }
+
+        ctx.lineWidth=1; ctx.strokeStyle="#000000";
+        ctx.beginPath();
+        for(var i=50;i<1100;i+=100){
+            ctx.moveTo(i,0); ctx.lineTo(i,650);}
+        for(var i=25;i<650;i+=50){
+            ctx.moveTo(0,i); ctx.lineTo(1100,i);}
+        ctx.stroke();
+        ctx.fillStyle="#000000"; ctx.font="15px courier";
+        for(var i=1;i<2.01;i+=0.1) ctx.fillText(i.toFixed(1),55+(i-1)*1000,20);
+        for(var i=-1;i>-6.01;i-=0.5) ctx.fillText(i.toFixed(1),5,40+(-i-1)*100);
+        ctx.fillStyle="#007700"; ctx.font="15px courier";
+        for(var i=8;i>-11;i-=2) ctx.fillText(i+"x1e-5",5,(-i*25)+270);
+        ctx.font="20px courier bold"; ctx.fillText("ERROR",50,295);
+        
+        ctx.lineWidth=2; ctx.strokeStyle="#ff0000";
+        ctx.beginPath(); ctx.moveTo(50,25); t=1;
+        for(var i=1;i<=N;i++){
+            t+=h; ctx.lineTo(50+(t-1)*1000,25+(-solution_appr[i]-1)*100);}
+        ctx.stroke();
+        ctx.strokeStyle="#0000ff";
+        ctx.beginPath(); ctx.moveTo(50,25); t=1;
+        for(var i=1;i<=N;i++){
+            t+=h; ctx.lineTo(50+(t-1)*1000,25+(-solution_real[i]-1)*100);}
+        ctx.stroke();
+        ctx.strokeStyle="#00aa00";
+        ctx.beginPath(); ctx.moveTo(50,275); t=1;
+        for(var i=1;i<=N;i++){
+            t+=h; ctx.lineTo(50+(t-1)*1000,275+(solution_appr[i]-solution_real[i])*2500000);
+            console.log(solution_appr[i]-solution_real[i]);}
+        ctx.stroke();
+    </script>
+</body>
+</html>
