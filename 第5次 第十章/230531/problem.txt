@@ -1,2 +1,0 @@
-don't know the reason
-PECE works very bad on javascript.

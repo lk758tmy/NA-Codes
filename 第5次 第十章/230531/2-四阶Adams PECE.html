@@ -19,7 +19,7 @@
         var N=1000;
         
         var h=1/N,t=1,y=-1,y0,h2=h/2,h6=h/6,h24=h/24,k1,k2,k3,k4;
-        solution_appr.push(-1); solution_real.push(-1); inter_f.push(1,-1);
+        solution_appr.push(-1); solution_real.push(-1); inter_f.push(-1);
         for(var i=0;i<3;i++){
             k1=func(t,y); k2=func(t+h2,y+h2*k1); k3=func(t+h2,y+h2*k2);
             t+=h; k4=func(t,y+h*k3); y=h6*(k1+2*k2+2*k3+k4)+y;
@@ -42,8 +42,8 @@
         for(var i=1;i<2.01;i+=0.1) ctx.fillText(i.toFixed(1),55+(i-1)*1000,20);
         for(var i=-1;i>-6.01;i-=0.5) ctx.fillText(i.toFixed(1),5,40+(-i-1)*100);
         ctx.fillStyle="#007700"; ctx.font="15px courier";
-        //for(var i=8;i>-11;i-=2) ctx.fillText(i+"x1e-11",5,(-i*25)+270);
-        for(var i=0.1;i>-0.11;i-=0.02) ctx.fillText(i.toFixed(2),3,(-i*2500)+270);
+        for(var i=8;i>-11;i-=2) ctx.fillText(i+"x1e-9",5,(-i*25)+270);
+        //for(var i=0.1;i>-0.11;i-=0.02) ctx.fillText(i.toFixed(2),3,(-i*2500)+270);
         ctx.font="20px courier bold"; ctx.fillText("ERROR",50,295);
         
         ctx.lineWidth=2; ctx.strokeStyle="#ff0000";
@@ -59,7 +59,7 @@
         ctx.strokeStyle="#00aa00";
         ctx.beginPath(); ctx.moveTo(50,275); t=1;
         for(var i=1;i<=N;i++){
-            t+=h; ctx.lineTo(50+(t-1)*1000,275+(solution_appr[i]-solution_real[i])*2500);
+            t+=h; ctx.lineTo(50+(t-1)*1000,275+(solution_appr[i]-solution_real[i])*25000000000);
             console.log(solution_appr[i]-solution_real[i]);}
         ctx.stroke();
     </script>
